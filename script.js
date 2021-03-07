@@ -2,7 +2,7 @@ var now = moment().format("MMMM Do, YYYY");
 var currentHour = moment().format("H");
 var currentDateEl = $("#currentDay");
 currentDateEl.text("Today is " + now);
-console.log(currentHour);
+// COLOR CODING BASED ON HOUR OF DAY
 if(currentHour < 9) {
     $("#9, #10, #11, #12, #1, #2, #3, #4, #5").addClass("future");
 }
@@ -52,3 +52,23 @@ if(currentHour == 17) {
 if(currentHour > 17) {
     $("#9, #10, #11, #12, #1, #2, #3, #4, #5").addClass("past");
 }
+// TEXT EDITING
+$(".col-10").on("click", function() {
+    var text = $(this)
+    .text()
+    .trim();
+    var textInput = $("<textarea>")
+    .addClass("description")
+    .val(text);
+    $(this).find("p").replaceWith(textInput);
+    textInput.trigger("focus");
+})
+$(".col-10").on("blur", "textarea", function() {
+    var text = $(this)
+    .val()
+    .trim();
+    var newText = $("<p>")
+    .addClass("description")
+    .text(text);
+    $(this).replaceWith(newText)
+});
