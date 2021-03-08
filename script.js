@@ -54,7 +54,7 @@ if(currentHour > 17) {
     $("#9, #10, #11, #12, #1, #2, #3, #4, #5").addClass("past");
 }
 // TEXT EDITING
-$(".col-10").on("click", function() {
+$(".col-md-10").on("click", function() {
     var text = $(this)
     .text()
     .trim();
@@ -63,8 +63,9 @@ $(".col-10").on("click", function() {
     .val(text);
     $(this).find("p").replaceWith(textInput);
     textInput.trigger("focus");
+    console.log(text);
 })
-$(".col-10").on("blur", "textarea", function() {
+$(".col-md-10").on("blur", "textarea", function() {
     var text = $(this)
     .val()
     .trim();
