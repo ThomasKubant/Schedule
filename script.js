@@ -1,6 +1,7 @@
 var now = moment().format("MMMM Do, YYYY");
 var currentHour = moment().format("H");
 var currentDateEl = $("#currentDay");
+var idCounter = 9;
 currentDateEl.text("Today is " + now);
 // COLOR CODING BASED ON HOUR OF DAY
 if(currentHour < 9) {
@@ -72,3 +73,20 @@ $(".col-10").on("blur", "textarea", function() {
     .text(text);
     $(this).replaceWith(newText)
 });
+$("button").on("click", function() {
+    var text = $(this).parent().parent().find("p").text();
+    var hour = $(this).parent().prev().attr('id');
+    console.log(text);
+    console.log(hour);
+    localStorage.setItem(hour, text);
+})
+for(i = 0; i < 9; i++) {
+    var text = $("#" + idCounter).text();
+    var savedText = localStorage.getItem(idCounter);
+    $("#" + idCounter).find("p").text(savedText);
+    idCounter++;
+    if(idCounter > 12) {
+        idCounter = 1;
+    }
+    console.log(savedText);
+}
